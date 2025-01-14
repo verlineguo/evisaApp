@@ -10,19 +10,19 @@
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('consultant.dashboard') }}">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('applicant') }}">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.employee.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Applicant</span></a>
+            <span>Employee</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('applicantProcess') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Visa Application</span></a>
+            <span>Application</span></a>
     </li>
     
     <!-- Divider -->

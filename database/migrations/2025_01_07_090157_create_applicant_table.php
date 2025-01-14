@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('username', 50);
             $table->string('password', 255);
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->string('phoneNo', 15);
             $table->string('emailAddress', 50);
             $table->string('address', 100);
