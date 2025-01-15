@@ -4,49 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Models\VisaApplicant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Visa;
+use App\Models\Applicant;
 
 class VisaApplicantController extends Controller
 {
-    /*
-    public function viewVisaApplicationDetails($idVisa)
+    public function index()
     {
-        $application = VisaApplicant::with(['applicant', 'visaFee', 'documents'])->find($idVisa);
-        return view('consultant.viewVisaApplicationDetails', compact('application'));
+        $visaApplicant = VisaApplicant::with(['applicant', 'visa'])->get()->toArray();
+        return view('admin.visaApplicant.index', ['visaApplicant' => $visaApplicant]);
+    }
+    public function create()
+    {
+        $applicant = Applicant::all();
+        $visa = Visa::all();
+        return view('admin.visaApplicant.form', ['applicant' => $applicant, 'visa' => $visa]);
     }
 
-    public function acceptVisa($idVisa)
-{
-    $application = VisaApplicant::find($idVisa);
-    
-    $application->status = 'Accepted'; 
-    $application->save();
+    public function save(Request $request)
+    {
+        DB::statement('EXEC SP_createVisaApplicant ?, ?, ?, ?, ?, ?, ?, ?, ?', [
+            $request->idVisa,
+            $request->idApplicant,
+            $request->jenisVisa,
+            $request->countryOfDest,
+            $request->dateOfArrival,
+            $request->dateOfDeparture,
+            $request->lengthOfStay,
+            $request->prevCountry,
+            $request->expDate,
+        ]);
+        return redirect()->route('admin.visaApplicant.index')->with('success', 'Visa application added successfully.');
+    }
 
-    ApplicationProcess::create([
-        'idEmp' => auth()->user()->idEmp, 
-        'idVisa' => $idVisa,
-        'startDate' => now(),
-        'endDate' => now(),
-        'idStat' => 'Accepted', 
-    ]);
+    public function edit($idVisa)
+    {
+        $visaApplicant = VisaApplicant::with(['applicant', 'visa'])->find($idVisa);
+        $applicant = Applicant::all();
+        $visa = Visa::all();
+        return view('admin.visaApplicant.form', [
+            'visaApplicant' => $visaApplicant,
+            'applicant' => $applicant,
+            'visa' => $visa,
+        ]);
+    }
 
-    return redirect()->route('consultant.visaApplications')->with('success', 'Visa Accepted');
-}
-public function rejectVisa($idVisa)
-{
-    $application = VisaApplicant::find($idVisa);
-    
-    $application->status = 'Rejected'; 
-    $application->save();
+    public function update(Request $request, $idVisa)
+    {
+        DB::statement('EXEC SP_updateVisaApplicant ?, ?, ?, ?, ?, ?, ?, ?, ?', [
+            $idVisa,
+            $request->idApplicant,
+            $request->jenisVisa,
+            $request->countryOfDest,
+            $request->dateOfArrival,
+            $request->dateOfDeparture,
+            $request->lengthOfStay,
+            $request->prevCountry,
+            $request->expDate,
+        ]);
 
-    ApplicationProcess::create([
-        'idEmp' => auth()->user()->idEmp, 
-        'idVisa' => $idVisa,
-        'startDate' => now(),
-        'endDate' => now(),
-        'idStat' => 'Rejected', 
-    ]);
+        return redirect()->route('admin.visaApplicant.index')->with('success', 'Visa application updated successfully.');
+    }
 
-    return redirect()->route('consultant.visaApplications')->with('error', 'Visa Rejected');
-}*/
+    public function delete($idVisa)
+    {
+        DB::statement('EXEC SP_DeleteVisaApplicant ?', [$idVisa]);
+        return redirect()->route('admin.visaApplicant.index')->with('success', 'Visa application deleted successfully.');
+    }
 
 }

@@ -30,25 +30,25 @@
                 <tbody>
                     @php($no = 1)
                     @foreach ($employee as $row)
-<tr>
-    <td>{{ $no++ }}</td>
-    <td>{{ $row['idEmp'] }}</td>
-    <td>{{ $row['name'] }}</td>
-    <td>{{ $row['username'] }}</td>
-    <td>{{ $row['role']['roleName'] ?? 'No Role' }}</td>
-    <td>{{ $row['dob'] }}</td>
-    <td>{{ $row['phoneNo'] }}</td>
-    <td>{{ $row['emailAddress'] }}</td>
-    <td>{{ $row['address'] }}</td>
-    <td>{{ $row['gender'] }}</td>
-    <td>
-        <a href="{{ route('admin.employee.create.update', $row['idEmp']) }}" class="btn btn-warning">Edit</a>
-        <form action="{{ route('admin.employee.delete', $row['idEmp']) }}" method="POST" style="display: inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </td>
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $row['idEmp'] }}</td>
+                        <td>{{ $row['name'] }}</td>
+                        <td>{{ $row['username'] }}</td>
+                        <td>{{ $row['role']['roleName'] ?? 'No Role' }}</td>
+                        <td>{{ $row['dob'] }}</td>
+                        <td>{{ $row['phoneNo'] }}</td>
+                        <td>{{ $row['emailAddress'] }}</td>
+                        <td>{{ $row['address'] }}</td>
+                        <td>{{ $row['gender'] }}</td>
+                        <td>
+                            <a href="{{ route('admin.employee.create.update', $row['idEmp']) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('admin.employee.delete', $row['idEmp']) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
 </tr>
 @endforeach
 

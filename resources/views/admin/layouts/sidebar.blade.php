@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -15,14 +15,30 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.employee.index') }}">
+        <a class="nav-link" href="{{ route('admin.applicant.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Employee</span></a>
+            <span>Applicant</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Data master</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">data</h6>
+                <a class="collapse-item" href="{{ route('admin.employee.index') }}">Employee</a>
+                <a class="collapse-item" href="{{ route('admin.country.index') }}">Country</a>
+                <a class="collapse-item" href="{{ route('admin.visa.index') }}">Visa</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('applicantProcess') }}">
+        <a class="nav-link" href="{{ route('admin.visaApplicant.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Application</span></a>
+            <span>Visa Application</span></a>
     </li>
     
     <!-- Divider -->

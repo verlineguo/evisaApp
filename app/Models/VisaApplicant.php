@@ -7,5 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class VisaApplicant extends Model
 {
     protected $table = 'visa_applicant';
+    public $incrementing = false;
     public $timestamps = false;
+    protected $keyType = 'string';
+    protected $primaryKey = 'idVisa';
+
+    protected $fillable = [
+        'idVisa',
+        'idApplicant',
+        'jenisVisa',
+        'dateOfArrival',
+        'dateOfDeparture',
+        'lengthOfStay',
+        'prevCountry',
+        'expDate',
+    ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class, 'idApplicant', 'idApplicant');
+    }
+
+    public function visa()
+    {
+        return $this->belongsTo(Visa::class, 'idFee', 'idFee');
+    }
 }

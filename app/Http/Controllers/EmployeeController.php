@@ -12,7 +12,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employee = Employee::with('role')->get()->toArray();
-        return view('admin.employee.index', ['employee' => $employee]);
+        return view('admin.employee.index', data: ['employee' => $employee]);
 
     }
     public function create()
@@ -46,9 +46,11 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $idEmp)
     {
-        DB::statement('EXEC SP_updateEmployee ?, ?, ?, ?, ?, ?, ?, ?', [
+        DB::statement('EXEC SP_updateEmployee ?, ?, ?, ?, ?, ?, ?, ?, ?, ?', [
             $idEmp,
             $request->name,
+            $request->username,
+            bcrypt($request->password),
             $request->role,
             $request->dob,
             $request->phoneNo,

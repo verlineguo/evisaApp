@@ -25,7 +25,9 @@ class Employee extends Authenticatable
     public $incrementing = false;
     public $timestamps = false;
     protected $keyType = 'string';
-    
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     public function getAuthPassword()
     {
         return $this->password; 
@@ -34,5 +36,15 @@ class Employee extends Authenticatable
     public function role() 
     {
         return $this->belongsTo(Role::class, 'role', 'idRole');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role && $this->role->roleName === 'admin';
+    }
+
+    public function isConsultant()
+    {
+        return $this->role && $this->role->roleName === 'consultant';
     }
 }
