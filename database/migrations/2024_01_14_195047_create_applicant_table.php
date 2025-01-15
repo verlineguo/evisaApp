@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('applicant', function (Blueprint $table) {
             $table->string('idApplicant', 50)->primary();
             $table->string('name', 100);
-            $table->string('username', 50);
+            $table->string('username', 50)->unique();
             $table->string('password', 255);
             $table->date('dob')->nullable();
-            $table->string('phoneNo', 15);
-            $table->string('emailAddress', 50);
-            $table->string('address', 100);
-            $table->string('motherName', 50);
-            $table->string('gender', 25);
-            $table->string('profession', 50);
+            $table->string('phoneNo', 15)->nullable();
+            $table->string('emailAddress', 50)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->string('motherName', 50)->nullable();
+            $table->string('gender', 25)->nullable();
+            $table->string('profession', 50)->nullable();
         });
     }
 
