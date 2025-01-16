@@ -21,6 +21,8 @@
         </div>
         <div class="card-footer">
             <a href="{{ route('consultant.applicant.index') }}" class="btn btn-secondary">Back to List</a>
+            <a href="{{ route('consultant.applicant.documents', $visaApplicant->VisaID) }}" class="btn btn-info">View Payment</a>            
+
         </div>
     </div>
 </div>

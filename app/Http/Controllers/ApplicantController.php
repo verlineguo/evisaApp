@@ -98,7 +98,71 @@ public function create()
         return view('admin.applicant.detail', compact('applicant'));
     }
 
+    
+    // function untuk applicant
+    public function home()
+    {
+        return view('applicant.home');
+    }
 
+    public function uploadDP()
+    {
+        return view('applicant.upload-data-pribadi');
+    }
 
+    public function uploadKV()
+    {
+        return view('applicant.upload-keterangan-visa');
+    }
 
+    public function uploadDoc()
+    {
+        return view('applicant.upload-dokumen');
+    }
+    
+    public function done()
+    {
+        return view('applicant.upload-done');
+    }
+
+    public function statusPengajuan()
+    {
+        return view('applicant.status-pengajuan');
+    }
+
+    public function pembayaranVisa()
+    {
+        return view('applicant.pembayaran-visa');
+    }
+
+    public function storeApplicant(Request $request)
+    {
+        dd($request->all());
+        $request->validate([
+            'idApplicant' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
+            'dob' => 'required',
+            'motherName' => 'required',
+            'phoneNo' => 'required',
+            'emailAddress' => 'required',
+            'profession' => 'required',
+            'address' => 'required',
+        ]);
+
+        $applicant = new Applicant();
+
+        $applicant->idApplicant = $request->idApplicant;
+        $applicant->name = $request->name;
+        $applicant->gender = $request->gender;
+        $applicant->dob = $request->dob;
+        $applicant->motherName = $request->motherName;
+        $applicant->phoneNo = $request->phoneNo;
+        $applicant->emailAddress = $request->emailAddress;
+        $applicant->profession = $request->profession;
+        $applicant->address = $request->address;
+        $applicant->save();
+
+        return redirect()->route('applicant.uploadDP')->with('success', 'Data pemohon berhasil disimpan!');
+    }
 }

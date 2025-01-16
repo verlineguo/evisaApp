@@ -6,8 +6,15 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Visa</h6>
-        <a href="{{ route('admin.visa.create') }}" class="btn btn-primary">Add Visa</a>
-
+        <a href="{{ route('admin.visa.index.filter') }}" class="btn btn-primary">Add Visa</a>
+        <form action=" " method="POST">
+            <select id="filter" name="filter">
+                <option value="" disabled selected>Pilih filter berdasarkan</option>
+                <option value="jenis">Berdasarkan Jenis</option>
+                <option value="negara">Berdasarkan Negara</option>
+            </select>
+            <button type="submit">Terapkan Filter</button>
+        </form>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -19,8 +26,7 @@
                     <th>Jenis Visa</th>
                     <th>Country Name</th>
                     <th>Fee</th>
-                    <th>Action</th>
-
+                    <th>Action</th
                     </tr>
                 </thead>
                 <tbody>

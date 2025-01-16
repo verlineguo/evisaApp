@@ -15,6 +15,11 @@ class MainDocumentController extends Controller
         $document = MainDocument::with('docType')->get()->toArray();
         return view('admin.document.index', ['document' => $document]);
     }
+    public function indexCons()
+    {
+        $document = MainDocument::with('docType')->get()->toArray();
+        return view('consultant.document.index', ['document' => $document]);
+    }
     public function save(Request $request)
     {
         $formattedDate = Carbon::createFromFormat('Y-m-d\TH:i', $request->uploadedDate)->format('Y-m-d H:i:s');
