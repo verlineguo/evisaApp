@@ -56,7 +56,6 @@ Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->midd
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
 Route::get('/consultant/document', [MainDocumentController::class, 'index'])->middleware('auth:employee')->name('consultant.document');
-Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
