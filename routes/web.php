@@ -11,6 +11,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainDocumentController;
 use App\Http\Controllers\VisaController;
+use App\Http\Controllers\PaymentController;
 
 
 // Route::prefix('')->group(function () {
@@ -40,8 +41,6 @@ Route::middleware(['auth:employee'])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 });
 
-Route::get('/consultant/dashboard', [DashboardController::class, 'consultantDashboard'])->name('consultant.dashboard');
-
 Route::middleware(['auth:employee'])->group(function () {
     Route::get('/consultant/dashboard', [DashboardController::class, 'consultantDashboard'])->name('consultant.dashboard');
 });
@@ -55,8 +54,6 @@ Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middlewar
 Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
-Route::get('/consultant/visaApplicant', [VisaApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.visaApplicant');
-Route::get('/consultant/visaApplicant/{idVisa}', [VisaApplicantController::class, 'detail'])->name('consultant.visaApplicant.detail');
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
     Route::get('', 'index')->name('admin.applicant.index');
@@ -122,6 +119,8 @@ Route::controller(VisaApplicantController::class)->prefix('admin/visaApplicant')
     Route::get('showApplicationProcess/{idVisa}', 'showApplicationProcess')->name('admin.visaApplicant.applicationProcess');
 
 });
+Route::get('/consultant/visaApplicant', [VisaApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.visaApplicant');
+Route::get('/consultant/visaApplicant/{idVisa}', [VisaApplicantController::class, 'detail'])->name('consultant.visaApplicant.detail');
 
 // Route::controller(MainDocumentController::class)->prefix('admin/document')->group(function () {
 //     Route::get('', 'index')->name('admin.document.index');
@@ -141,3 +140,10 @@ Route::controller(MainDocumentController::class)->prefix('consultant/document')-
     Route::put('edit/{idVisa}', 'update')->name('admin.document.create.update');
     Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
 });
+
+
+
+
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+
+
