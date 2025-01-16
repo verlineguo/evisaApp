@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisaApplicantController;
 use App\Http\Controllers\Auth\EmployeeAuthController;
@@ -17,9 +18,11 @@ use App\Http\Controllers\VisaController;
 //     Route::post('/login', [EmployeeAuthController::class, 'login'])->name('admin.login.submit');
 // });
 
-Route::get('/', [EmployeeAuthController::class, 'showLoginForm']);
 
-Route::post('/auth-login', [EmployeeAuthController::class, 'login']);
+Route::get('', [EmployeeAuthController::class, 'showLoginForm'])->name('login.form'); 
+Route::post('login', [EmployeeAuthController::class, 'login'])->name('login'); // Proses login
+Route::post('logout', [EmployeeAuthController::class, 'logout'])->name('logout'); // Proses logout
+
 
 // Route::middleware(['auth:employee'])->group(function () {
 //     // Dashboard untuk Admin
@@ -33,8 +36,10 @@ Route::post('/auth-login', [EmployeeAuthController::class, 'login']);
 //     })->name('consultant.dashboard');
 // });
 
-Route::post('logout', [EmployeeAuthController::class, 'logout']);
-Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+Route::middleware(['auth:employee'])->group(function () {
+    Route::get('admin/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+});
+
 Route::get('/consultant/dashboard', [DashboardController::class, 'consultantDashboard'])->name('consultant.dashboard');
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
@@ -97,8 +102,6 @@ Route::controller(VisaApplicantController::class)->prefix('admin/visaApplicant')
     Route::put('edit/{idVisa}', 'update')->name('admin.visaApplicant.create.update');
     Route::delete('delete/{idVisa}', 'delete')->name('admin.visaApplicant.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.visaApplicant.detail');
-    Route::get('{idVisa}/documents', 'viewDocuments')->name('admin.visaApplicant.documents');
-    Route::get('applicationProcess/{idVisa}', 'showApplicationProcess')->name('admin.visaApplicant.applicationProcess');
 });
 
 Route::controller(MainDocumentController::class)->prefix('admin/document')->group(function () {

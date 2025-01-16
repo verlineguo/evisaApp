@@ -21,7 +21,8 @@ class Employee extends Authenticatable
     protected $primaryKey = 'idEmp'; 
     protected $fillable = [
         'idEmp', 'name', 'username', 'password', 'role', 'dob', 'phoneNo', 'emailAddress', 'address', 'gender'
-    ];    
+    ];  
+    protected $guard = 'employee';  
     public $incrementing = false;
     public $timestamps = false;
     protected $keyType = 'string';
