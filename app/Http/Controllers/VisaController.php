@@ -52,4 +52,5 @@ class VisaController extends Controller
         DB::statement('EXEC SP_DeleteVisa ?', [$idFee]);
         return redirect()->route('admin.visa.index')->with('success', 'Visa deleted successfully.');
     }
+    
 }

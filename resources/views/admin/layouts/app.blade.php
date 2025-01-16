@@ -51,6 +51,7 @@
                     </div>
                     
                     @yield(section: 'content')
+                    
 
                     <!-- Content Row -->
                     

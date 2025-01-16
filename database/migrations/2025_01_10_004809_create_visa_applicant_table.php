@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('idVisa', 50)->primary();
             $table->string('idApplicant', 50);
             $table->string('idFee', 50);
-            $table->string('jenisVisa', 30);
             $table->date('dateOfArrival');
             $table->date('dateOfDeparture');
             $table->integer('lengthOfStay');

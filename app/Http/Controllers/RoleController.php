@@ -20,7 +20,7 @@ class RoleController extends Controller
 
     public function save(Request $request) 
     {
-        Role::create([
+        $request->validate([
             'idRole' => 'required|string|max:10|unique:role,idRole',
             'roleName' => 'required|string|max:30',
         ]);

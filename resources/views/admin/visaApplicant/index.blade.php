@@ -31,7 +31,7 @@
                         <th>{{ $no++ }}</th>
                         <td>{{ $row['idVisa'] }}</td>
                         <td>{{ $row['idApplicant'] }}</td>
-                        <td>{{ $row['jenisVisa'] }}</td>
+                        <td>{{ $row['idFee'] }}</td>
                         <td>{{ $row['dateOfArrival'] }}</td>
                         <td>{{ $row['dateOfDeparture'] }}</td>
                         <td>{{ $row['lengthOfStay'] }}</td>

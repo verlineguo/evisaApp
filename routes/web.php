@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MainDocumentController;
 use App\Http\Controllers\VisaController;
 
 
@@ -96,7 +97,18 @@ Route::controller(VisaApplicantController::class)->prefix('admin/visaApplicant')
     Route::put('edit/{idVisa}', 'update')->name('admin.visaApplicant.create.update');
     Route::delete('delete/{idVisa}', 'delete')->name('admin.visaApplicant.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.visaApplicant.detail');
+    Route::get('{idVisa}/documents', 'viewDocuments')->name('admin.visaApplicant.documents');
+    Route::get('applicationProcess/{idVisa}', 'showApplicationProcess')->name('admin.visaApplicant.applicationProcess');
 });
 
+Route::controller(MainDocumentController::class)->prefix('admin/document')->group(function () {
+    Route::get('', 'index')->name('admin.document.index');
+    Route::get('create', 'create')->name('admin.document.create');
+    Route::post('create', 'save')->name('admin.document.create.save');
+    Route::get('edit/{idVisa}', 'edit')->name('admin.document.edit');
+    Route::put('edit/{idVisa}', 'update')->name('admin.document.create.update');
+    Route::delete('delete/{idVisa}', 'delete')->name('admin.document.delete');
+    Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
+});
 
 

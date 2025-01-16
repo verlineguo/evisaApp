@@ -14,17 +14,21 @@
                     <h6 class="m-0 font-weight-bold text-primary">{{ isset($visaApplicant) ? 'Form Edit Visa Application' : 'Form Add Visa Application' }}</h6>
                 </div>
                 <div class="card-body">
-
                     <div class="form-group">
                         <label for="idApplicant">Applicant ID</label>
                         <input type="text" class="form-control" id="idApplicant" name="idApplicant" value="{{ old('idApplicant', isset($visaApplicant) ? $visaApplicant->idApplicant : '') }}" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="jenisVisa">Visa Type</label>
-                        <input type="text" class="form-control" id="jenisVisa" name="jenisVisa" value="{{ old('jenisVisa', isset($visaApplicant) ? $visaApplicant->jenisVisa : '') }}" required>
+                        <label for="idFee">Id Fee</label>
+                        <select class="form-control" id="idFee" name="idFee">
+                            @foreach ($visa as $row)
+                            <option value="{{ $row->idFee }}" {{ old('idFee', $visaApplicant->idFee ?? '') == $row->idFee ? 'selected' : '' }}>
+                                {{ $row->idFee }}
+                            </option>
+                            @endforeach
+                        </select>                    
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="dateOfArrival">Date of Arrival</label>
                         <input type="date" class="form-control" id="dateOfArrival" name="dateOfArrival" value="{{ old('dateOfArrival', isset($visaApplicant) ? $visaApplicant->dateOfArrival : '') }}" required>
@@ -43,6 +47,7 @@
                     <div class="form-group">
                         <label for="prevCountry">Previous Country</label>
                         <input type="text" class="form-control" id="prevCountry" name="prevCountry" value="{{ old('prevCountry', isset($visaApplicant) ? $visaApplicant->prevCountry : '') }}">
+
                     </div>
 
                     <div class="form-group">
@@ -52,7 +57,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">{{ isset($visa) ? 'Update' : 'Create' }}</button>
+                    <button type="submit" class="btn btn-primary">{{ isset($visaApplicant) ? 'Update' : 'Create' }}</button>
                 </div>
             </div>
         </div>

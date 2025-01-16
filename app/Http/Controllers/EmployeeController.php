@@ -23,6 +23,7 @@ class EmployeeController extends Controller
 
     public function save(request $request)
     {
+        
         DB::statement('EXEC SP_createEmployee ?, ?, ?, ?, ?, ?, ?, ?, ?', [
             $request->name,
             $request->username,

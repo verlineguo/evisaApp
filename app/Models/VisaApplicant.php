@@ -15,7 +15,7 @@ class VisaApplicant extends Model
     protected $fillable = [
         'idVisa',
         'idApplicant',
-        'jenisVisa',
+        'idFee',
         'dateOfArrival',
         'dateOfDeparture',
         'lengthOfStay',
