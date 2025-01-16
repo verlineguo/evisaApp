@@ -56,6 +56,10 @@ Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middlewar
 Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
+Route::get('/consultant/document', [MainDocumentController::class, 'index'])->middleware('auth:employee')->name('consultant.document');
+
+
+
 
 // Ini Route Buat Applicant
 Route::controller(ApplicantController::class)->prefix('applicant')->group(function () {
