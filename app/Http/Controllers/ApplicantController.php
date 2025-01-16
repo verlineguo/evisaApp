@@ -98,7 +98,42 @@ public function create()
         return view('admin.applicant.detail', compact('applicant'));
     }
 
+    
+    // function untuk applicant
+    public function home()
+    {
+        return view('applicant.home');
+    }
 
+    public function uploadDP()
+    {
+        return view('applicant.upload-data-pribadi');
+    }
+
+    public function uploadKV()
+    {
+        return view('applicant.upload-keterangan-visa');
+    }
+
+    public function uploadDoc()
+    {
+        return view('applicant.upload-dokumen');
+    }
+    
+    public function done()
+    {
+        return view('applicant.upload-done');
+    }
+
+    public function statusPengajuan()
+    {
+        return view('applicant.status-pengajuan');
+    }
+
+    public function pembayaranVisa()
+    {
+        return view('applicant.pembayaran-visa');
+    }
 
 
 }
