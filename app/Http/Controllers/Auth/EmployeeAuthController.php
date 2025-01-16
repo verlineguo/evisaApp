@@ -21,7 +21,6 @@ class EmployeeAuthController extends Controller
         if (Auth::guard('employee')->attempt($credentials)) {
             $request->session()->regenerate();
             $employee = Auth::guard('employee')->user(); // Get the authenticated employee
-            
             if ($employee->role == 1) { // idRole 1 untuk admin
                 return redirect()->route('admin.dashboard');
             } elseif ($employee->role == 2) { // idRole 2 untuk consultant

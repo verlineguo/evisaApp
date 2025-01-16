@@ -21,8 +21,8 @@ use App\Http\Controllers\PaymentController;
 
 
 Route::get('', [EmployeeAuthController::class, 'showLoginForm'])->name('login.form'); 
-Route::post('login', [EmployeeAuthController::class, 'login'])->name('login'); // Proses login
-Route::post('logout', [EmployeeAuthController::class, 'logout'])->name('logout'); // Proses logout
+Route::post('login', [EmployeeAuthController::class, 'login'])->name('login'); 
+Route::post('logout', [EmployeeAuthController::class, 'logout'])->name('logout'); 
 
 
 // Route::middleware(['auth:employee'])->group(function () {
@@ -42,6 +42,19 @@ Route::middleware(['auth:employee'])->group(function () {
 });
 
 Route::get('/consultant/dashboard', [DashboardController::class, 'consultantDashboard'])->name('consultant.dashboard');
+
+Route::middleware(['auth:employee'])->group(function () {
+    Route::get('/consultant/dashboard', [DashboardController::class, 'consultantDashboard'])->name('consultant.dashboard');
+});
+
+Route::middleware(['auth:employee'])->group(function () {
+    Route::get('/applicant', [EmployeeController::class, 'index'])->name('applicant.index');
+});
+
+Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('admin.applicant');
+
+Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
+Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
     Route::get('', 'index')->name('admin.applicant.index');

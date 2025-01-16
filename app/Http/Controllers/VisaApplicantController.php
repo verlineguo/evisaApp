@@ -86,19 +86,19 @@ class VisaApplicantController extends Controller
         return view('admin.visaApplicant.detail', compact('visaApplicant'));
     }
 
-    public function viewDocuments($idVisa)
-    {
-        $visaApplicant = VisaApplicant::find($idVisa);
-        $documents = MainDocument::where('idVisa', $idVisa)->get();
+    // public function viewDocuments($idVisa)
+    // {
+    //     $visaApplicant = VisaApplicant::find($idVisa);
+    //     $documents = MainDocument::where('idVisa', $idVisa)->get();
 
-        return view('admin.visaApplicant.documents', compact('visaApplicant', 'documents'));
-    }
-    public function showApplicationProcess($idVisa)
-    {
-        $applicationProcesses = ApplicationProcess::where('idVisa', $idVisa)->get();
+    //     return view('admin.visaApplicant.documents', compact('visaApplicant', 'documents'));
+    // }
+    // public function showApplicationProcess($idVisa)
+    // {
+    //     $applicationProcesses = ApplicationProcess::where('idVisa', $idVisa)->get();
 
-        return view('admin.visaApplicant.applicationProcess', compact('application Processes'));
-    }
+    //     return view('admin.visaApplicant.applicationProcess', compact('application Processes'));
+    // }
 
     
 

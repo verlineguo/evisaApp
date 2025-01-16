@@ -65,8 +65,8 @@
         </div>
         <div class="card-footer">
             <a href="{{ route('admin.visaApplicant.index') }}" class="btn btn-secondary">Back to List</a>
-            <a href="{{ route('admin.visaApplicant.documents', $visaApplicant->VisaID) }}" class="btn btn-info">View Documents</a>            
-            <a href="{{ route('admin.visaApplicant.applicationProcess', $visaApplicant->VisaID) }}" class="btn btn-warning">View Application Process</a>
+            <!-- <a href="{{ route('admin.visaApplicant.documents', $visaApplicant->VisaID) }}" class="btn btn-info">View Documents</a>            
+            <a href="{{ route('admin.visaApplicant.applicationProcess', $visaApplicant->VisaID) }}" class="btn btn-warning">View Application Process</a> -->
         </div>
     </div>
 </div>

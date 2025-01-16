@@ -15,7 +15,7 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('consultant.applicant')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Applicant</span></a>
     </li>

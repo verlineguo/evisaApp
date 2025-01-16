@@ -23,23 +23,27 @@
                     <th>Mother's Name</th>
                     <th>Gender</th>
                     <th>Profession</th>
+                    <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php($no = 1)
-                    @foreach ($data as $row)
+                    @foreach ($applicant as $row)
                     <tr>
                         <th>{{ $no++ }}</th>
-                        <td>{{ $row->idApplicant }}</td>
-                        <td>{{ $row->name }}</td>
-                        <td>{{ $row->username }}</td>
-                        <td>{{ $row->dob }}</td>
-                        <td>{{ $row->phoneNo }}</td>
-                        <td>{{ $row->emailAddress }}</td>
-                        <td>{{ $row->address }}</td>
-                        <td>{{ $row->motherName }}</td>
-                        <td>{{ $row->gender }}</td>
-                        <td>{{ $row->profession }}</td>
+                        <td>{{ $row['idApplicant'] }}</td>
+                        <td>{{ $row['name'] }}</td>
+                        <td>{{ $row['username'] }}</td>
+                        <td>{{ $row['dob'] }}</td>
+                        <td>{{ $row['phoneNo'] }}</td>
+                        <td>{{ $row['emailAddress'] }}</td>
+                        <td>{{ $row['address'] }}</td>
+                        <td>{{ $row['motherName'] }}</td>
+                        <td>{{ $row['gender'] }}</td>
+                        <td>{{ $row['profession'] }}</td>
+                        <td>
+                            <a href="{{ route('consultant.applicant.detail', $row['idApplicant']) }}" class="btn btn-info">View</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
