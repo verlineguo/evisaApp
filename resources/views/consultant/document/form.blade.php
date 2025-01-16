@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Form add applicant')
 
-@section('contents')
+@section('content')
 <form action=" {{isset($applicant) ?route('applicant.add.save', $applicant->id) : route('applicant.add.save') }}" method="post">
     @csrf
     <div class="row">

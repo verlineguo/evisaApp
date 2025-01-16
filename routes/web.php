@@ -55,6 +55,9 @@ Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middlewar
 Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
 
+Route::get('/consultant/visaApplicant', [VisaApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.visaApplicant');
+Route::get('/consultant/visaApplicant/{idVisa}', [VisaApplicantController::class, 'detail'])->name('consultant.visaApplicant.detail');
+
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
     Route::get('', 'index')->name('admin.applicant.index');
     Route::get('create', 'create')->name('admin.applicant.create');
@@ -115,17 +118,26 @@ Route::controller(VisaApplicantController::class)->prefix('admin/visaApplicant')
     Route::put('edit/{idVisa}', 'update')->name('admin.visaApplicant.create.update');
     Route::delete('delete/{idVisa}', 'delete')->name('admin.visaApplicant.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.visaApplicant.detail');
+    Route::get('documents/{idVisa}', 'viewDocuments')->name('admin.visaApplicant.documents');
+    Route::get('showApplicationProcess/{idVisa}', 'showApplicationProcess')->name('admin.visaApplicant.applicationProcess');
+
 });
 
-Route::controller(MainDocumentController::class)->prefix('admin/document')->group(function () {
+// Route::controller(MainDocumentController::class)->prefix('admin/document')->group(function () {
+//     Route::get('', 'index')->name('admin.document.index');
+//     Route::get('create', 'create')->name('admin.document.create');
+//     Route::post('create', 'save')->name('admin.document.create.save');
+//     Route::get('edit/{idVisa}', 'edit')->name('admin.document.edit');
+//     Route::put('edit/{idVisa}', 'update')->name('admin.document.create.update');
+//     Route::delete('delete/{idVisa}', 'delete')->name('admin.document.delete');
+//     Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
+// });
+
+
+
+Route::controller(MainDocumentController::class)->prefix('consultant/document')->group(function () {
     Route::get('', 'index')->name('admin.document.index');
-    Route::get('create', 'create')->name('admin.document.create');
-    Route::post('create', 'save')->name('admin.document.create.save');
     Route::get('edit/{idVisa}', 'edit')->name('admin.document.edit');
     Route::put('edit/{idVisa}', 'update')->name('admin.document.create.update');
-    Route::delete('delete/{idVisa}', 'delete')->name('admin.document.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
 });
-
-
-

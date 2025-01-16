@@ -1,5 +1,5 @@
 @extends('consultant.layouts.app')
-@section('title', 'Data Applicant')
+@section('title', 'Data document per applicant')
 
 @section('content')
 <!-- DataTales Example -->
@@ -17,7 +17,6 @@
                     <th>File Path</th>
                     <th>Uploaded Date</th>
                     <th>Document Type</th>
-                    <th>Applicant Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +27,6 @@
                         <td><a href="{{ asset('storage/' . $document->filePath) }}" target="_blank">View Document</a></td>
                         <td>{{ $document->uploadedDate }}</td>
                         <td>{{ $document->documentType }}</td>
-                        <td>{{ $document->applicantName }}</td>
                     </tr>
                     @endforeach
                 </tbody>

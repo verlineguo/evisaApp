@@ -10,12 +10,29 @@ use App\Models\Applicant;
 use Illuminate\Support\Facades\Log;
 use App\Models\MainDocument;
 use App\Models\ApplicationProcess;
+use Illuminate\Support\Facades\Auth;
+
 class VisaApplicantController extends Controller
 {
     public function index()
     {
-        $visaApplicant = VisaApplicant::with(['applicant', 'visa'])->get()->toArray();
-        return view('admin.visaApplicant.index', ['visaApplicant' => $visaApplicant]);
+        $user = Auth::guard('employee')->user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'You must be logged in to access this page.');
+        }
+
+        if ($user->role == 1) { 
+            $visaApplicant = VisaApplicant::with(['applicant', 'visa'])->get()->toArray();
+            return view('admin.visaApplicant.index', ['visaApplicant' => $visaApplicant]);
+        } elseif ($user->role == 2) { 
+            $visaApplicant = VisaApplicant::with(['applicant', 'visa'])->get()->toArray();
+            return view('consultant.visaApplicant.index', ['visaApplicant' => $visaApplicant]);
+        } else {
+            return redirect()->route('home')->with('error', 'Unauthorized access');
+        }
+
+        
     }
     public function create()
     {
@@ -86,19 +103,19 @@ class VisaApplicantController extends Controller
         return view('admin.visaApplicant.detail', compact('visaApplicant'));
     }
 
-    // public function viewDocuments($idVisa)
-    // {
-    //     $visaApplicant = VisaApplicant::find($idVisa);
-    //     $documents = MainDocument::where('idVisa', $idVisa)->get();
+    public function viewDocuments($idVisa)
+    {
+        $visaApplicant = VisaApplicant::find($idVisa);
+        $documents = MainDocument::where('idVisa', $idVisa)->get();
 
-    //     return view('admin.visaApplicant.documents', compact('visaApplicant', 'documents'));
-    // }
-    // public function showApplicationProcess($idVisa)
-    // {
-    //     $applicationProcesses = ApplicationProcess::where('idVisa', $idVisa)->get();
+        return view('admin.visaApplicant.documents', compact('visaApplicant', 'documents'));
+    }
+    public function showApplicationProcess($idVisa)
+    {
+        $applicationProcesses = ApplicationProcess::where('idVisa', $idVisa)->get();
 
-    //     return view('admin.visaApplicant.applicationProcess', compact('application Processes'));
-    // }
+        return view('admin.visaApplicant.applicationProcess', compact('application Processes'));
+    }
 
     
 

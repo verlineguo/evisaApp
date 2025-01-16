@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('consultant.layouts.app')
 @section('title', 'Detail Visa Applicant')
 
 @section('content')
