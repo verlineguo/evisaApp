@@ -1,7 +1,7 @@
   @extends('applicant.layouts.layout-applicant')
   @section('content')
     <div class="px-32 py-16">
-      <form action="" method="POST">
+      <form action="{{ route('applicant.uploadDP.store') }}" method="POST">
         @csrf
       
           <div class="border-b border-gray-900/10 pb-12">
@@ -9,6 +9,13 @@
             <p class="mt-1 text-sm/6 text-gray-600">Mohon isi data pribadi dengan benar dan lengkap!</p>
       
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div class="sm:col-span-3">
+                <label for="idApplicant" class="block text-sm/6 font-medium text-gray-900">ID</label>
+                <div class="mt-2">
+                  <input type="text" name="idAppliacant" id="idAppliacant" placeholder="ID" autocomplete="idApplicant" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required>
+                </div>
+              </div>
+
               <div class="sm:col-span-3">
                 <label for="name" class="block text-sm/6 font-medium text-gray-900">Nama Lengkap</label>
                 <div class="mt-2">
@@ -79,6 +86,11 @@
       
         <div class="mt-6 flex items-center justify-end gap-x-8 px-16 py-8">
           <button type="submit">Simpan</button>
+          @if(session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+          @endif
           <a href="{{ route('applicant.uploadDoc') }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-500 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
             Selanjutnya &raquo;
             </a>

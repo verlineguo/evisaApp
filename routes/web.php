@@ -65,6 +65,7 @@ Route::get('/consultant/document', [MainDocumentController::class, 'index'])->mi
 Route::controller(ApplicantController::class)->prefix('applicant')->group(function () {
     Route::get('home', [ApplicantController::class, 'home'])->name('applicant.home');
     Route::get('pengajuan-visa/upload-data-pribadi', [ApplicantController::class, 'uploadDP'])->name('applicant.uploadDP');
+    Route::post('pengajuan-visa/upload-data-pribadi/store', [ApplicantController::class, 'storeApplicant'])->name('applicant.uploadDP.store');
     Route::get('pengajuan-visa/upload-dokumen', [ApplicantController::class, 'uploadDoc'])->name('applicant.uploadDoc');
     Route::get('pengajuan-visa/upload-keterangan-visa', [ApplicantController::class, 'uploadKV'])->name('applicant.uploadKV');
     Route::get('pengajuan-visa/upload-done', [ApplicantController::class, 'done'])->name('applicant.upload-done');
