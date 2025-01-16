@@ -32,7 +32,7 @@ class VisaController extends Controller
     public function edit($idFee)
     {
         $visa = Visa::with('country')->find($idFee);
-        $country = Country::all();  
+        $country = Country::all();
         return view('admin.visa.form', ['visa' => $visa, 'country' => $country]);
     }
 
@@ -52,5 +52,23 @@ class VisaController extends Controller
         DB::statement('EXEC SP_DeleteVisa ?', [$idFee]);
         return redirect()->route('admin.visa.index')->with('success', 'Visa deleted successfully.');
     }
+
+    public function filter(Request $request){
+        $request->validate([
+            'filter' => 'required',
+        ]);
+
+        $filter = $request->input('filter');
+        
+        switch($filter){
+            case('jenis'):
+                return redirect('');
+            
+            case('negara'):
+                return redirect();
+        }
+
+    }
+    
     
 }

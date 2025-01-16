@@ -47,13 +47,17 @@ Route::middleware(['auth:employee'])->group(function () {
 });
 
 Route::middleware(['auth:employee'])->group(function () {
-    Route::get('/applicant', [EmployeeController::class, 'index'])->name('applicant.index');
+    Route::get('/applicant', [EmployeeController::class, 'indexCons'])->name('applicant.index');
 });
 
 Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('admin.applicant');
 
 Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
+
+Route::get('/consultant/document', [MainDocumentController::class, 'index'])->middleware('auth:employee')->name('consultant.document');
+Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
+
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
     Route::get('', 'index')->name('admin.applicant.index');
@@ -104,6 +108,10 @@ Route::controller(VisaController::class)->prefix('admin/visa')->group(function (
     Route::get('edit/{idFee}', 'edit')->name('admin.visa.edit');
     Route::put('edit/{idFee}', 'update')->name('admin.visa.create.update');
     Route::delete('delete/{idFee}', 'delete')->name('admin.visa.delete');
+    Route::post('index/filter', 'filter')->name('admin.visa.index.filter');
+    Route::get('index/filter=jenis')->name('admin.visa.index.filter.jenis');
+    Route::get('index/filter=negara')->name('admin.visa.index.filter.negara');
+    
 });
 
 

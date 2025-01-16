@@ -67,4 +67,5 @@ class EmployeeController extends Controller
         DB::statement('EXEC SP_deleteEmployee ?', [$idEmp]);
         return redirect()->route('admin.employee.index')->with('success', 'Employee deleted successfully.');
     }
+    
 }
