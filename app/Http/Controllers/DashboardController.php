@@ -33,7 +33,8 @@ class DashboardController extends Controller
     public function consultantDashboard()
     {
         
-
         return view('consultant.dashboard');
     }
+
+    
 }
