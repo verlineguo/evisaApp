@@ -11,6 +11,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainDocumentController;
 use App\Http\Controllers\VisaController;
+use App\Http\Controllers\PaymentController;
 
 
 // Route::prefix('')->group(function () {
@@ -113,6 +114,9 @@ Route::controller(MainDocumentController::class)->prefix('admin/document')->grou
     Route::delete('delete/{idVisa}', 'delete')->name('admin.document.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
 });
+
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+
 
 
 
