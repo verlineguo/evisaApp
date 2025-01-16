@@ -11,6 +11,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainDocumentController;
 use App\Http\Controllers\VisaController;
+use App\Http\Controllers\PaymentController;
 
 
 // Route::prefix('')->group(function () {
@@ -54,6 +55,21 @@ Route::get('/admin/applicant', [ApplicantController::class, 'index'])->middlewar
 
 Route::get('/consultant/applicant', [ApplicantController::class, 'index'])->middleware('auth:employee')->name('consultant.applicant');
 Route::get('/consultant/applicant/{idApplicant}', [ApplicantController::class, 'detail'])->name('consultant.applicant.detail');
+
+
+// Ini Route Buat Applicant
+Route::controller(ApplicantController::class)->prefix('applicant')->group(function () {
+    Route::get('home', [ApplicantController::class, 'home'])->name('applicant.home');
+    Route::get('pengajuan-visa/upload-data-pribadi', [ApplicantController::class, 'uploadDP'])->name('applicant.uploadDP');
+    Route::get('pengajuan-visa/upload-dokumen', [ApplicantController::class, 'uploadDoc'])->name('applicant.uploadDoc');
+    Route::get('pengajuan-visa/upload-keterangan-visa', [ApplicantController::class, 'uploadKV'])->name('applicant.uploadKV');
+    Route::get('pengajuan-visa/upload-done', [ApplicantController::class, 'done'])->name('applicant.upload-done');
+    Route::get('status-pengajuan', [ApplicantController::class, 'statusPengajuan'])->name('applicant.status-pengajuan');
+    Route::get('pembayaran-visa', [ApplicantController::class, 'pembayaranVisa'])->name('applicant.pembayaran-visa');
+});
+
+
+
 
 Route::controller(ApplicantController::class)->prefix('admin/applicant')->group(function () {
     Route::get('', 'index')->name('admin.applicant.index');
@@ -130,6 +146,9 @@ Route::controller(MainDocumentController::class)->prefix('admin/document')->grou
     Route::delete('delete/{idVisa}', 'delete')->name('admin.document.delete');
     Route::get('detail/{idVisa}', 'detail')->name('admin.document.detail');
 });
+
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+
 
 
 
